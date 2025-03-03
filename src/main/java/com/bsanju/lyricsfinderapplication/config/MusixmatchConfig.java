@@ -1,22 +1,17 @@
 package com.bsanju.lyricsfinderapplication.config;
 
-import org.springframework.beans.factory.annotation.Value;
+import io.github.cdimascio.dotenv.Dotenv;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class MusixmatchConfig {
-
-    @Value("${musixmatch.api.key}")
-    private String apiKey;
-
-    @Value("${musixmatch.api.url}")
-    private String apiUrl;
+    private static final Dotenv dotenv = Dotenv.load(); // Load .env file
 
     public String getApiKey() {
-        return apiKey;
+        return dotenv.get("MUSIXMATCH_API_KEY"); // Read API key from .env
     }
 
     public String getApiUrl() {
-        return apiUrl;
+        return dotenv.get("MUSIXMATCH_API_URL"); // Read API URL from .env
     }
 }
